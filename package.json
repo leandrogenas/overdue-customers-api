@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "main": "main.js",
   "scripts": {
-    "start": "npm run fe:build && concurrently --kill-others npm:open npm:fe:watch npm:be:start:dev \"node livereload.js\"",
+    "start": "concurrently --kill-others npm:open npm:fe:watch npm:be:start:dev ",
     "open": "electron .",
     "fe:ng": "ng",
     "fe:watch": "ng build --delete-output-path false --progress --watch",
