@@ -1,17 +1,38 @@
-version: "2"
+version: "3.7"
 services:
   overdue:
     container_name: overdue
     restart: always
     build: .
-    ports:
-      - "3000:3000"
-    links:
+    command: yarn start
+    environment:
+      SERVICE_NAME: overdue-customers
+      SERVICE_TAGS: dev
+      SERVICE_DB_HOST: ${DATABASE_HOST}:${DATABASE_PORT}
+      SERVICE_DB_USER: ${DATABASE_USERNAME}
+      SERVICE_DB_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    depends_on:
       - mongo
+    ports:
+      - 3000:3000
+    networks:
+      - nest-network
+
   mongo:
     container_name: mongo
     image: mongo
     volumes:
-      - ./data:/data/db
+      - db_data:/data/db
     ports:
-      - "27017:27017"
+      - 27017:27017
+    networks:
+      - nest-network
+
+networks:
+  nest-network:
+    driver: bridge
+volumes:
+  db_data: {}

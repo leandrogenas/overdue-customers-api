@@ -1,8 +1,7 @@
-FROM node:14.15
-RUN mkdir -p /usr/src/app
+FROM node:14.15-alpine
 WORKDIR /usr/src/app
-COPY package.json /usr/src/app/
-RUN npm install
-COPY . /usr/src/app
-EXPOSE 3000
-CMD [ “npm”, “start” ]
+COPY package.json .
+RUN npm i -g concurrently @angular/cli @nestjs/cli
+RUN yarn
+COPY . .
+#CMD npm run postinstall && npm start

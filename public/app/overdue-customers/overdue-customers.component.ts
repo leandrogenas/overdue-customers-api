@@ -9,7 +9,7 @@ import { PoPageDynamicTableField } from '@po-ui/ng-templates';
 export class OverdueCustomersComponent implements OnInit {
 
   readonly fields: Array<PoPageDynamicTableField> = [
-    { property: 'id', key: true },
+    { property: 'id', key: true, visible: false },
     { property: 'name', label: 'Nome' },
     { property: 'amount', label: 'Valor' },
     { property: 'since', label: 'Inadimplente desde', type: 'date'}

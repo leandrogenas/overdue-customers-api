@@ -5,19 +5,16 @@ import { OverdueCustomer } from './overdue-customer/overdue-customer.entity';
 
 import { OverdueCustomerModule } from './overdue-customer/overdue-customer.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { ConfigModule } from '@nestjs/config';
+import { ormConfig } from './database/config/ormconfig';
 import { join } from 'path';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      url: 'mongodb://localhost/devroute',
-      synchronize: true,
-      useUnifiedTopology: true,
-      entities: [
-        OverdueCustomer
-      ]
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
+    TypeOrmModule.forRoot(ormConfig()),
     GraphQLModule.forRoot({
       autoSchemaFile: true
     }),

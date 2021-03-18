@@ -1,12 +1,4 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { OverdueCustomer } from './overdue-customer.entity';
-import { v4 as uuid } from 'uuid';
-
-import * as fs from 'fs';
-
-const customers = [
+[
   {
     "name": "Janaina Mendes de Sousa",
     "email": "jemeso@gmail.com",
@@ -79,61 +71,4 @@ const customers = [
     "amount": 9676.14,
     "since": "2019-10-10T10:30:00Z"
   }
-];
-
-@Injectable()
-export class OverdueCustomerService implements OnModuleInit {
-  constructor(
-    @InjectRepository(OverdueCustomer)
-    private customerRepo: Repository<OverdueCustomer>
-  )
-  {
-
-  }
-
-  fillDatabase()
-  {    
-    var customer;
-    customers.forEach((val, i) => {
-      customer = this.customerRepo.create({
-        id: uuid(),
-        name: val.name,
-        email: val.email,
-        amount: val.amount,
-        since: val.since
-      });
-
-      this.customerRepo.save(customer);
-    })
-
-  }
-
-  async onModuleInit() 
-  {
-    const docCount = (await this.customerRepo.find()).length;
-
-    if(docCount === 0)
-      this.fillDatabase();
-  }
-
-  async createCustomer(name, email, amount, since): Promise<OverdueCustomer>
-  {
-    const customer = this.customerRepo.create({
-      id: uuid(),
-      name: name,
-      email: email,
-      amount: amount,
-      since: since
-    });
-
-    return this.customerRepo.save(customer);
-
-  }
-
-  async getAllOverdueCustomers(): Promise<OverdueCustomer[]>
-  {
-    return this.customerRepo.find();
-  }
-
-
-}
+]
