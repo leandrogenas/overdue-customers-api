@@ -19,9 +19,9 @@ import { join } from 'path';
       autoSchemaFile: true
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public')
+      rootPath: join(__dirname, '..', '..', 'frontend', 'dist')
     }),
-    OverdueCustomerModule
+    OverdueCustomerModule 
   ],
   controllers: [],
   providers: [],

@@ -1,5 +1,6 @@
-import { Controller, Get, Options, Post } from "@nestjs/common";
+import { Controller, Get, Options, Param, Post, Query } from "@nestjs/common";
 import { throws } from "assert";
+import { SimpleConsoleLogger } from "typeorm";
 import { OverdueCustomerService } from "./overdue-customer.service";
 
 @Controller('overdueCustomers')
@@ -12,23 +13,19 @@ export class OverdueCustomerController {
 
   }
 
-  @Post()
-  async postAll()
-  {
-    return this.optAllOverdueCustomers();
-  }
-
   @Get()
-  async getAll()
+  async getAll(
+    @Query('page') page: number,
+    @Query('pageSize') pageSize: number,
+    @Query('search') search: string
+  )
   {
-    return this.optAllOverdueCustomers();
-  }
+    const items = await this.overdueCustomerService.getOverdueCustomersContaining(search);
 
-  @Options()
-  async optAllOverdueCustomers()
-  {
+    // todo: implement the page and pagesize
+
     return {
-      items: await this.overdueCustomerService.getAllOverdueCustomers()
+      items: items
     }
   }
 

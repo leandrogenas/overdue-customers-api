@@ -53,7 +53,7 @@ const customers = [
     "name": "Zara Roçadas Ulhoa",
     "email": "zara@gmail.com",
     "amount": 3409.8,
-    "since": "2021-2-10T10:30:00Z"
+    "since": "2021-02-10T10:30:00Z"
   },
   {
     "name": "Mauri Barata Tristão",
@@ -128,6 +128,26 @@ export class OverdueCustomerService implements OnModuleInit {
 
     return this.customerRepo.save(customer);
 
+  }
+
+  async getOverdueCustomersContaining(search?: string)
+  {
+    const customers = await this.customerRepo.find();
+
+    var items = []
+    customers.forEach(val => {
+      if(search != undefined){
+        const found = val.name.toUpperCase().includes(search.toUpperCase());
+
+        if(!found)
+          return;
+      }
+
+      items.push(val);
+    });
+
+    return items;
+    
   }
 
   async getAllOverdueCustomers(): Promise<OverdueCustomer[]>

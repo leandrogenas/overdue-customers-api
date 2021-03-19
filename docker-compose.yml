@@ -4,16 +4,19 @@ services:
     container_name: overdue
     restart: always
     build: .
-    command: yarn start
+    working_dir: /usr/app/backend
+    command: npm start
     environment:
       SERVICE_NAME: overdue-customers
       SERVICE_TAGS: dev
-      SERVICE_DB_HOST: ${DATABASE_HOST}:${DATABASE_PORT}
-      SERVICE_DB_USER: ${DATABASE_USERNAME}
-      SERVICE_DB_PASSWORD: ${DATABASE_PASSWORD}
+      SERVICE_DB_HOST: mongodb:27017
+      SERVICE_DB_USER: root
+      SERVICE_DB_PASSWORD: ''
     volumes:
-      - .:/usr/app
-      - /usr/app/node_modules
+      - ./frontend:/usr/app/frontend
+      - ./backend:/usr/app/backend
+      - /usr/app/frontend/node_modules
+      - /usr/app/backend/node_modules
     depends_on:
       - mongo
     ports:
@@ -22,7 +25,7 @@ services:
       - nest-network
 
   mongo:
-    container_name: mongo
+    container_name: mongodb
     image: mongo
     volumes:
       - db_data:/data/db
