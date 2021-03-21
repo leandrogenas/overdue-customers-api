@@ -11,17 +11,23 @@ A aplicação é estruturada da seguinte maneira:
 ---
 ### Passos para execução do projeto
 
-1. Docker
+1. Inicialize o Docker
+
+
+Na pasta atual (do README), rode os comandos
 ```
 docker-compose build
 docker-compose up
 ```  
 O docker irá se inicializar e será servido no endereço http://localhost:3000
 
+---
 2. Yarn
+
 ```
 npm i -g yarn @nestjs/cli @angular/cli concurrently
+cd frontend
 yarn
-yarn start:dev
+yarn open
 ```
 Obs.: A aplicação irá abrir em branco, se não carregar sozinho, vá em 'View' -> 'Reload' na janela do electron.

@@ -5,7 +5,7 @@ services:
     restart: always
     build: .
     working_dir: /usr/app/backend
-    command: npm start
+    command: yarn start
     environment:
       SERVICE_NAME: overdue-customers
       SERVICE_TAGS: dev
@@ -13,8 +13,7 @@ services:
       SERVICE_DB_USER: root
       SERVICE_DB_PASSWORD: ''
     volumes:
-      - ./frontend:/usr/app/frontend
-      - ./backend:/usr/app/backend
+      
       - /usr/app/frontend/node_modules
       - /usr/app/backend/node_modules
     depends_on:

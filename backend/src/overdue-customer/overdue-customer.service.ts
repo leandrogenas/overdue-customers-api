@@ -137,9 +137,14 @@ export class OverdueCustomerService implements OnModuleInit {
     var items = []
     customers.forEach(val => {
       if(search != undefined){
-        const found = val.name.toUpperCase().includes(search.toUpperCase());
+        let found = [];
+        
+        found.push(val.name.toUpperCase().includes(search.toUpperCase()));
+        found.push(val.email.toUpperCase().includes(search.toUpperCase()));
+        found.push(val.since.toString().includes(search.toUpperCase()));
+        found.push(val.amount.toString().includes(search.toUpperCase()));
 
-        if(!found)
+        if(!found.includes(true))
           return;
       }
 

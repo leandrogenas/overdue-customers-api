@@ -5,16 +5,14 @@ RUN mkdir /usr/app /usr/app/frontend /usr/app/backend
 
 WORKDIR /usr/app/backend
 COPY backend/package.json .
-RUN npm i
+RUN yarn
 COPY ./backend .
 RUN rm -rf public/*
 
 WORKDIR /usr/app/frontend
 COPY frontend/package.json .
-RUN npm i
+RUN yarn
 COPY ./frontend .
-RUN npm run build
-
-RUN cp dist/* ../backend/public
+RUN yarn build
 
 #CMD npm run postinstall && npm start
