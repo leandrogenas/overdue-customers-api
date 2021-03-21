@@ -13,7 +13,8 @@ services:
       SERVICE_DB_USER: root
       SERVICE_DB_PASSWORD: ''
     volumes:
-      
+      #- ./backend:/usr/app/backend
+      #- ./frontend:/usr/app/frontend
       - /usr/app/frontend/node_modules
       - /usr/app/backend/node_modules
     depends_on:
