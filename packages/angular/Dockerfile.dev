@@ -1,0 +1,14 @@
+FROM node:14.15-alpine
+
+WORKDIR /app/frontend
+
+RUN npm i -g @angular/cli 
+
+COPY package.json .
+RUN npm install --legacy-peer-deps
+COPY . .
+
+CMD ["npm", "run", "watch"]
+
+
+#CMD npm run postinstall && npm start

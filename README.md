@@ -4,30 +4,54 @@ Aplicação independente que faz a leitura de um banco de dados MongoDB e exibe-
 
 A aplicação é estruturada da seguinte maneira:
 
-- Para o frontend, está sendo utilizado o framework Angular, em sua versão 11. Junto com isso, também está se fazendo uso de alguns componentes de código aberto
-- O frontend SERÁ executado em um servidor web no endereço http://localhost:3000, mas têm embutido no projeto o Electron
-- O backend está construído em NestJs, e serve para conectar-se com o banco de dados e trazer as informações para o frontend
+```
+./overdue-customers
+  packages/
+    angular/
+      dist/
+      src/
+      package.json
+      ...
+    nestjs/
+      dist/
+      src/
+      public/
+      package.json
+      ...
+  docker-compose.yml
+  package.json
+  README.md
+  LICENSE.md
+```
 
----
-### Passos para execução do projeto
+na pasta ```packages``` você encontra tanto o projeto frontend em Angular 11 quanto o backend em NestJS, cada um deles possui um arquivo Dockerfile para construção e execução dos conteineres.
+
+o arquivo ```docker-compose.yml``` contém todas as configurações necessárias para rodar os conteineres do projeto como um todo, apesar de estar otimizado para o ambiente de desenvolvimento, pode ser usado em produção sem problemas, ao custo de um pouco mais de processamento devido ao watcher do livereload.
+
+### Requisitos
+
+1. Docker
+
+### Instalação
 
 1. Inicialize o Docker
 
 
-Na pasta atual (do README), rode os comandos
+Na pasta atual (deste README), rode o comando
 ```
-docker-compose build
 docker-compose up
 ```  
 O docker irá se inicializar e será servido no endereço http://localhost:3000
 
----
-2. Yarn
+Para uso em produção, é isso que é necessário para rodar a aplicação, ajustando o arquivo docker-compose.yml para as portas externas conforme necessário.
 
+---
+2. Instalação de dependencias para desenvolvimento
+
+Na pasta atual (deste README), rode o comando
 ```
-npm i -g yarn @nestjs/cli @angular/cli concurrently
-cd frontend
-yarn
-yarn open
+npm run prepare-dev-env 
+cd packages/frontend
+npm run open
 ```
-Obs.: A aplicação irá abrir em branco, se não carregar sozinho, vá em 'View' -> 'Reload' na janela do electron.
+Obs.: Se a aplicação abrir em branco, vá em 'View' -> 'Reload' na janela do electron.

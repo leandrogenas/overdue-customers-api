@@ -1,0 +1,11 @@
+FROM node:14.15-alpine
+RUN npm i -g @nestjs/cli
+
+WORKDIR /app/backend
+COPY package.json .
+RUN yarn install
+COPY . .
+
+CMD ["yarn", "start:dev"]
+
+#CMD npm run postinstall && npm start

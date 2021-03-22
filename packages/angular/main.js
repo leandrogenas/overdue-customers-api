@@ -14,7 +14,7 @@ function createWindow () {
     }
   })
 
-  win.loadURL('http://localhost:3000');
+  win.loadURL('http://localhost:3001');
   //win.loadFile(__dirname + '/public/loading.html');
 }
 
