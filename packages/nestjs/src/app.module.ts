@@ -9,7 +9,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ormConfig } from './database/config/ormconfig';
 import { join } from 'path';
 
-@Module({
+@Module({  
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
@@ -21,7 +21,7 @@ import { join } from 'path';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public')
     }),
-    OverdueCustomerModule 
+    OverdueCustomerModule  
   ],
   controllers: [],
   providers: [],

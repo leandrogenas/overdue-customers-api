@@ -39,7 +39,7 @@ o arquivo ```docker-compose.yml``` contém todas as configurações necessárias
 
 Na pasta atual (deste README), rode o comando
 ```
-docker-compose up
+docker-compose up (-d para desacoplar do console)
 ```  
 O docker irá se inicializar e será servido no endereço http://localhost:3000
 
@@ -50,8 +50,8 @@ Para uso em produção, é isso que é necessário para rodar a aplicação, aju
 
 Na pasta atual (deste README), rode o comando
 ```
-npm run prepare-dev-env 
-cd packages/frontend
-npm run open
+npm i -g yarn
+yarn
+yarn develop
 ```
 Obs.: Se a aplicação abrir em branco, vá em 'View' -> 'Reload' na janela do electron.

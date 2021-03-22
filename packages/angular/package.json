@@ -2,13 +2,11 @@
   "name": "oc-api-frontend",
   "version": "1.1.0",
   "description": "Frontend em Angular para a aplicação",
-  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "watch": "ng build --watch",
     "build": "ng build",
-    "open": "electron .",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -37,8 +35,6 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
-    "electron": "^12.0.1",
-    "electron-reload": "^1.5.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.1.0",

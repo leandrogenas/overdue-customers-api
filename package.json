@@ -2,12 +2,32 @@
   "name": "todo-list-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "prepare-dev-nestjs": "cd packages/nestjs && npm install",
-    "prepare-dev-angular": "cd packages/angular && npm install",
-    "prepare-dev-env": "npm run prepare-dev-nestjs && npm run prepare-dev-angular"
+    "install": "npm run prepare-dev-nestjs && npm run prepare-dev-angular",
+    "develop": "npm run fe:build && concurrently --kill-others \"node livereload.js\" npm:fe:watch npm:be:start:dev npm:open",
+    "open": "electron .",
+    "fe:start": "cd packages/angular && npm start",
+    "fe:build": "cd packages/angular && npm run build",
+    "fe:watch": "cd packages/angular && npm run watch",
+    "be:start": "cd packages/nestjs && yarn start",
+    "be:start:dev": "cd packages/nestjs && yarn start:dev",
+    "prepare-dev-nestjs": "cd packages/nestjs && yarn",
+    "prepare-dev-angular": "cd packages/angular && npm install"
   },
+
+  "dependencies": {
+    "yarn": "^1.0.0"
+  },
+
+  "devDependencies": {
+    "rimraf": "3.0.2",
+    "filewatcher": "3.0.1",
+    "concurrently": "6.0.0",
+    "electron": "^12.0.1",
+    "electron-reload": "^1.5.0"
+  },
+
   "keywords": [],
   "author": "",
   "license": "ISC"
